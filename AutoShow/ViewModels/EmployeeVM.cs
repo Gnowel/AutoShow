@@ -1,7 +1,9 @@
 ﻿using AutoShow.Models;
 using AutoShow.Services;
 using AutoShow.Services.Interfaces;
+using AutoShow.Utilities;
 using AutoShow.ViewModels.Base;
+using AutoShow.Views.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,17 +14,36 @@ namespace AutoShow.ViewModels
     class EmployeeVM : ViewModelBase
     {
         private readonly IEmployeeService _employeeService;
+        private RelayCommand _addEmployeeCommand;
 
-        public ObservableCollection<EmployeeModel> Employes { get; set; }
+        public List<EmployeeModel> Employes { get; set; }
         public EmployeeVM()
         {
             _employeeService = new EmployeeService();
 
-            Employes = new ObservableCollection<EmployeeModel>(_employeeService.GetEmployees());
+            Employes = new List<EmployeeModel>(_employeeService.GetEmployees());
 
             foreach(var e in Employes)
             {
                 e.PositionName = _employeeService.GetPositionNameById(e.Id);
+            }
+        }
+        public RelayCommand AddEmployeeCommand
+        {
+            get
+            {
+                return _addEmployeeCommand ??
+                    (_addEmployeeCommand = new RelayCommand(obj =>
+                    {
+                        NewEmployeeDialog newEmployeeDialog = new NewEmployeeDialog();
+
+                        newEmployeeDialog.Closed += (obj, e) =>
+                        {
+                            //Employes = _employeeService.GetEmployees();
+                        };
+                        newEmployeeDialog.ShowDialog();
+                        Employes = _employeeService.GetEmployees();
+                    }));
             }
         }
     }

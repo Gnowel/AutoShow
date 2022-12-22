@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Styles\TopNavigationMenu.xaml"/>
                 <ResourceDictionary Source="Styles\DataGrid.xaml"/>
                 <ResourceDictionary Source="Styles\NewCarDialogStyle.xaml"/>
+                <ResourceDictionary Source="Styles\AddDialog.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
 

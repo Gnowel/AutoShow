@@ -96,12 +96,12 @@ namespace AutoShow.Models
             string error = null;
             switch (propertyName)
             {
-                case "Login":
-                    if (Login.Length < 2)
-                    {
-                        error = "Имя должно быть больше 1 символа!";
-                    }
-                    break;
+                //case "Login":
+                //    if (Login.Length < 2)
+                //    {
+                //        error = "Имя должно быть больше 1 символа!";
+                //    }
+                //    break;
             }
             return error;
         }

@@ -13,5 +13,7 @@ namespace AutoShow.Services.Interfaces
         EmployeeModel SignIn(string login, string password);
         List<EmployeeModel> GetEmployees();
         string GetPositionNameById(int id);
+        void InsertEmployee(EmployeeModel employee);
+        void Delete(int id);
     }
 }

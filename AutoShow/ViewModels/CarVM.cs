@@ -18,12 +18,12 @@ namespace AutoShow.ViewModels
     {
         private readonly ICarService _carService;
         private RelayCommand _addCarCommand;
-        public ObservableCollection <CarModel> Cars { get; set; }
+        public List <CarModel> Cars { get; set; }
         public CarVM()
         {
             _carService = new CarService();
 
-            Cars = new ObservableCollection<CarModel>(_carService.GetCars());
+            Cars = new List<CarModel>(_carService.GetCars());
         }
         public RelayCommand AddCarCommand
         {
@@ -35,7 +35,7 @@ namespace AutoShow.ViewModels
                         NewCarDialog newCarDialog = new NewCarDialog();
                         newCarDialog.Closed += (obj, e) =>
                         {
-
+                            Cars = _carService.GetCars();
                         };
                         newCarDialog.ShowDialog();
                     }));

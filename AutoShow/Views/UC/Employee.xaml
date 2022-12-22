@@ -39,7 +39,7 @@
                     <Button
                         Style="{StaticResource AddButton}"
                         Content="Добавить"
-                        Command="{Binding AddCarCommand}"
+                        Command="{Binding AddEmployeeCommand}"
                         />
 
                     <DataGrid 

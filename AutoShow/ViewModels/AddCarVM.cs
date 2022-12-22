@@ -94,10 +94,10 @@ namespace AutoShow.ViewModels
                     (_addCarCommand = new RelayCommand(obj =>
                     {
                         //CarModel carModel = new CarModel();
-                        CreateCar.EquipmentId   = 2;
-                        CreateCar.ColourId      = 2;
-                        ((Window)obj).Close();
+                        //CreateCar.EquipmentId   = 2;
+                        //CreateCar.ColourId      = 2;
                         _carService.InsertCar(CreateCar, FileName);
+                        ((Window)obj).Close();
                     },
                     (obj) => CreateCar.isValid));
             }
