@@ -1,0 +1,191 @@
+﻿<Window x:Class="AutoShow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AutoShow.ViewModels"
+        xmlns:local="clr-namespace:AutoShow"
+        mc:Ignorable="d"
+        x:Name="mainForm"
+        Title="MainWindow" Height="768" Width="1400"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
+    
+    <Grid 
+        Background="{StaticResource DefaultBackgroundBrush }"
+        MouseDown="Polygon_MouseDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <!--left navigation menu-->
+            <ColumnDefinition/>
+            <!--content-->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <!--top navigation menu-->
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--#region Logo -->
+        <Grid
+            Background="{StaticResource PrimaryBrush }">
+            <Image
+                Height="40"
+                Width="40"
+                Stretch="Uniform"
+                Source="/Image/Icon/nissan.png"/>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Top Navigator Menu -->
+        <Grid
+            Background="{StaticResource CanvasBrush}"
+            Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!--Polygon header to move window-->
+                <RowDefinition/>
+                <!--Top Navigation Menu-->
+            </Grid.RowDefinitions>
+
+            <!--#region Header -->
+            <!--Left Corner-->
+            <Polygon 
+                Fill="{StaticResource DimBrush}"
+                HorizontalAlignment="Left"
+                Margin="40,0,100,0"
+                Stretch="Uniform"
+                Height="10"
+                VerticalAlignment="Top"
+                MouseDown="Polygon_MouseDown">
+                <Polygon.Points>
+                    <!--Starting Point-->
+                    <Point X="0" Y="0"/>
+
+                    <!--Diagonal line-->
+                    <Point X="4" Y="4"/>
+
+                    <!--Final point line-->
+                    <Point X="4" Y="0"/>
+                </Polygon.Points>
+            </Polygon>
+
+            <!--Center-->
+            <Rectangle
+                Fill="{StaticResource DimBrush}"
+                Margin="50, 0, 110, 0"
+                HorizontalAlignment="Stretch"
+                MouseDown="Polygon_MouseDown"/>
+
+            <!--Right Corner-->
+            <Polygon 
+                Fill="{StaticResource DimBrush}"
+                HorizontalAlignment="Right"
+                Margin="40,0,100,0"
+                Stretch="Uniform"
+                Height="10"
+                VerticalAlignment="Top"
+                MouseDown="Polygon_MouseDown">
+
+                <Polygon.Points>
+                    <!--Starting Point-->
+                    <Point X="0" Y="0"/>
+
+                    <!--Diagonal line-->
+                    <Point X="-4" Y="4"/>
+
+                    <!--Final point line-->
+                    <Point X="-4" Y="0"/>
+                </Polygon.Points>
+            </Polygon>
+            <!--#endregion-->
+
+            <!--#region Minimize, Maximize, Close Buttons -->
+            <StackPanel
+                Grid.RowSpan="2"
+                Panel.ZIndex="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="8">
+
+                <Button
+                    Name="minimizeButton"
+                    Click="minimizeButton_Click"
+                    Style="{StaticResource BtnCloseMinimazeMaximize}"
+                    Content="{StaticResource minimize_icon}"/>
+                <Button
+                    Name="maximizeButton"
+                    Click="maximizeButton_Click"
+                    Style="{StaticResource MaximizeButtonStyle}"/>
+                <Button
+                    Name="closeButton"
+                    Click="closeButton_Click"
+                    Style="{StaticResource BtnCloseMinimazeMaximize}"
+                    Content="{StaticResource close_icon}"/>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+        
+        <!--#region Left Navigation Menu-->
+        <Grid
+            Background="{StaticResource CanvasBrush}"
+            Grid.Row="1">
+            <!--Menu Buttons-->
+            <StackPanel>
+                <RadioButton 
+                    Style="{StaticResource BtnStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Image/LeftMenuIcon/model.png"
+                               Style="{StaticResource Image_style}"/>
+                        <TextBlock Text=" Модели"
+                                   Style="{StaticResource Text_style}"/>
+                    </StackPanel>
+                </RadioButton>
+                
+                <RadioButton 
+                    Style="{StaticResource BtnStyle}"
+                    Command="{Binding CarCommand}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/Image/LeftMenuIcon/car.png"
+                               Style="{StaticResource Image_style}"/>
+                        <TextBlock Text=" Марки"
+                                   Style="{StaticResource Text_style}"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton 
+                    Style="{StaticResource BtnStyle}"
+                    Command="{Binding EmployeeCommand}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource users_icon}"
+                               Style="{StaticResource Image_style}"/>
+                        <TextBlock Text=" Сотрудники"
+                                   Style="{StaticResource Text_style}"/>
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Pages-->
+        <Grid 
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="Wheat">
+            <!--<Frame 
+                x:Name="Pages"
+                Content="{Binding CurrentView}"/>-->
+            <ContentControl
+                x:Name="Pages"
+                Content="{Binding CurrentView}"/>
+        </Grid>
+        <!--#endregion-->
+            
+    </Grid>
+</Window>

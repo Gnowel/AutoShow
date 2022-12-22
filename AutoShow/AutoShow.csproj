@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Image\DELETE.png" />
+    <None Remove="Image\edit.png" />
+    <None Remove="Image\Icon\nissan.png" />
+    <None Remove="Image\LeftMenuIcon\car.png" />
+    <None Remove="Image\LeftMenuIcon\colour.png" />
+    <None Remove="Image\LeftMenuIcon\engine.png" />
+    <None Remove="Image\LeftMenuIcon\model.png" />
+    <None Remove="Image\LeftMenuIcon\transmission.png" />
+    <None Remove="Image\LeftMenuIcon\type.png" />
+    <None Remove="Image\LeftMenuIcon\users.png" />
+    <None Remove="Image\LoginForm\garage.png" />
+    <None Remove="Image\LoginForm\Крест активный.png" />
+    <None Remove="Image\LoginForm\Крест не активный.png" />
+    <None Remove="Image\LoginForm\Минус активный.png" />
+    <None Remove="Image\LoginForm\Минус не активный.png" />
+    <None Remove="Image\MainForm\close.png" />
+    <None Remove="Image\MainForm\maximize.png" />
+    <None Remove="Image\MainForm\minimize.png" />
+    <None Remove="Image\MainForm\subtract.png" />
+    <None Remove="Image\SortDownActive.png" />
+    <None Remove="Image\SortDownDontActive.png" />
+    <None Remove="Image\SortUpActive.png" />
+    <None Remove="Image\SortUpDontActive.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\LeftMenuIcon\users.png" />
+    <Resource Include="Image\MainForm\minimize.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\DELETE.png" />
+    <Resource Include="Image\edit.png" />
+    <Resource Include="Image\Icon\nissan.png" />
+    <Resource Include="Image\LeftMenuIcon\car.png" />
+    <Resource Include="Image\LeftMenuIcon\colour.png" />
+    <Resource Include="Image\LeftMenuIcon\engine.png" />
+    <Resource Include="Image\LeftMenuIcon\model.png" />
+    <Resource Include="Image\LeftMenuIcon\transmission.png" />
+    <Resource Include="Image\LeftMenuIcon\type.png" />
+    <Resource Include="Image\LoginForm\garage.png" />
+    <Resource Include="Image\LoginForm\Крест активный.png" />
+    <Resource Include="Image\LoginForm\Крест не активный.png" />
+    <Resource Include="Image\LoginForm\Минус активный.png" />
+    <Resource Include="Image\LoginForm\Минус не активный.png" />
+    <Resource Include="Image\MainForm\close.png" />
+    <Resource Include="Image\MainForm\maximize.png" />
+    <Resource Include="Image\MainForm\subtract.png" />
+    <Resource Include="Image\SortDownActive.png" />
+    <Resource Include="Image\SortDownDontActive.png" />
+    <Resource Include="Image\SortUpDontActive.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DBAccess\DBAccess.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapImage 
+        x:Key="restore_icon"
+        UriSource="/Image/MainForm/minimize.png"/>
+
+    <BitmapImage 
+        x:Key="maximize_icon"
+        UriSource="/Image/MainForm/maximize.png"/>
+    
+    <BitmapImage 
+        x:Key="close_icon"
+        UriSource="/Image/MainForm/close.png"/>
+    
+    <BitmapImage 
+        x:Key="minimize_icon"
+        UriSource="/Image/MainForm/subtract.png"/>
+    
+    <BitmapImage 
+        x:Key="users_icon"
+        UriSource="\Image\LeftMenuIcon\users.png"/>
+    
+    <BitmapImage 
+        x:Key="sortDownDontActive_icon"
+        UriSource="/Image/SortDownDontActive.png"/>
+    
+    <BitmapImage 
+        x:Key="sortUpDontActive_icon"
+        UriSource="/Image/SortUpDontActive.png"/>
+    
+    <BitmapImage 
+        x:Key="sortDownActive_icon"
+        UriSource="/Image/SortDownActive.png"/>
+    
+    <BitmapImage 
+        x:Key="sortUpActive_icon"
+        UriSource="/Image/SortUpActive.png"/>
+
+    <BitmapImage 
+        x:Key="delete_icon"
+        UriSource="/Image/DELETE.png"/>
+    
+    <BitmapImage 
+        x:Key="edit_icon"
+        UriSource="/Image/edit.png"/>
+    
+</ResourceDictionary>

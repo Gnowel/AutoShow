@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="AutoShow.Views.UC.Car"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AutoShow.Views.UC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:vm="clr-namespace:AutoShow.ViewModels">
+    
+    <UserControl.DataContext>
+        <vm:CarVM/>
+    </UserControl.DataContext>
+    
+    <Grid
+        Background="{StaticResource DefaultBackgroundBrush }">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <TextBlock 
+                    Text="Машины"
+                    FontSize="16"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="10,15,0,0"/>
+            </Grid>
+
+            <Grid
+                Grid.Row="1">
+                <Grid>
+                    <Button
+                        Style="{StaticResource AddButton}"
+                        Content="Добавить"
+                        Command="{Binding AddCarCommand}"
+                        />
+
+                    <DataGrid 
+                        RowStyle="{DynamicResource DataGridRowStyle1}"
+                        ColumnHeaderStyle="{DynamicResource DataGridColumnHeader}"
+                        x:Name="Employes"
+                        Margin="10,45,10,10"
+                        IsReadOnly="True"
+                        HeadersVisibility="Column"
+                        AutoGenerateColumns="False"
+                        ItemsSource="{Binding Path=Cars}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="ID"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=Id}"/>
+                            <DataGridTextColumn
+                                Header="Цена"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=Price}"/>
+                            <DataGridTextColumn
+                                Header="Страна марки"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=Manufacture}"/>
+                            <DataGridTextColumn
+                                Header="Год выпуска"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=Year}"/>
+                            <DataGridTextColumn
+                                Header="Наличие"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=Status}"/>
+                            <DataGridTextColumn
+                                Header="Количество мест"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=Seat}"/>
+                            <DataGridTextColumn
+                                Header="Пробег"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=Mileage}"/>
+                            <DataGridTextColumn
+                                Header="VIN"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=VIN}"/>
+                            <DataGridTextColumn
+                                Header="Дата прибытия"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=DateArrival}"/>
+                            <DataGridTextColumn
+                                Header="Комплектация"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=EquipmentId}"/>
+                            <DataGridTextColumn
+                                Header="Цвет"
+                                HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                Binding="{Binding Path=ColourId}"/>
+                            <DataGridTemplateColumn 
+                            Header="Action"
+                            HeaderStyle="{DynamicResource DataGridColumnHeader}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button 
+                                    Grid.Column="0"
+                                    Style="{DynamicResource EditButton}"
+                                    />
+                                            <Button
+                                    Grid.Column="1"
+                                    Style="{DynamicResource DeleteButton}"
+                                        />
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

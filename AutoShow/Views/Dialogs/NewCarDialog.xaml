@@ -1,0 +1,422 @@
+﻿<Window x:Class="AutoShow.Views.Dialogs.NewCarDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoShow.Views.Dialogs"
+        xmlns:vm="clr-namespace:AutoShow.ViewModels"
+        xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+        mc:Ignorable="d"
+        Title="NewCarDialog" 
+        Height="1080"
+        Width="300"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        x:Name="AddCarWindow">
+
+    <Window.DataContext>
+        <vm:AddCarVM/>
+    </Window.DataContext>
+
+    <Grid
+        Background="{StaticResource DefaultBackgroundBrush}"
+        MouseDown="Grid_MouseDown">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <TextBlock
+                Text="Добавить машину"
+                FontSize="16"
+                Foreground="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="8">
+                <Button 
+                    Name="closeButton"
+                    Style="{StaticResource BtnCloseMinimazeMaximize}"
+                    Content="{StaticResource close_icon}"
+                    Click="closeButton_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Background="{StaticResource DefaultBackgroundBrush}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                
+                <!--Картинка-->
+                <Grid
+                    Margin="10"
+                    Grid.Row="0"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Фотография"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <Image
+                       Width="150"
+                       Height="150"
+                       Source="{Binding FileName}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="0,25,0,0"/>
+
+                    <Button
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="180,0,0,10"
+                        Width="70"
+                        Height="30"
+                        Style="{DynamicResource ButtonDialog}"
+                        Content="Добавить"
+                        Command="{Binding AddPhotoCommand}"/>
+                        
+                </Grid>
+                
+                <!--Цена-->
+                <Grid
+                    Grid.Row="1"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+                    
+                    <TextBlock
+                        Text="Цена"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <TextBox
+                        Width="270"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,5"
+                        Style="{StaticResource ValidateTB}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="CreateCar.Price"
+                                StringFormat="0.0#####"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <!--Страна изготовитель-->
+                <Grid
+                    Grid.Row="2"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Страна марки"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <TextBox
+                        Width="270"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,5"
+                        Style="{StaticResource ValidateTB}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="CreateCar.Manufacture"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <!--Год изготовления-->
+                <Grid
+                    Grid.Row="3"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Год изготовления"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <TextBox
+                        Width="270"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,5"
+                        Style="{StaticResource ValidateTB}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="CreateCar.Year"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <!--Статус-->
+                <Grid
+                    Grid.Row="4"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Статус"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <CheckBox
+                        Height="20"
+                        Width="150"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="5"
+                        IsChecked="{Binding CreateCar.Status}"
+                        Background="White">
+                        <!--<CheckBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding SCar.}"/>
+                            </DataTemplate>
+                        </CheckBox.ItemTemplate>-->
+                    </CheckBox>
+                </Grid>
+
+                <!--Количество посадочных мест-->
+                <Grid
+                    Grid.Row="5"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Количество посадоных месте"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <TextBox
+                        Width="270"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,5"
+                        Style="{StaticResource ValidateTB}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="CreateCar.Seat"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+                <!--Метраж-->
+                <Grid
+                    Grid.Row="6"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Пробег"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <TextBox
+                        Width="270"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,5"
+                        Style="{StaticResource ValidateTB}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="CreateCar.Mileage"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+                <!--вин номер-->
+                <Grid
+                    Grid.Row="8"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="VIN"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <TextBox
+                        Width="270"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,5"
+                        Style="{StaticResource ValidateTB}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="CreateCar.VIN"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+                <!--Дата прибытия на склад-->
+                <Grid
+                    Grid.Row="9"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Дата прибыти на склад"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <TextBox
+                        Width="270"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,5"
+                        Style="{StaticResource ValidateTB}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="CreateCar.DateArrival"
+                                UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+                <!--Комплектация-->
+                <Grid
+                    Grid.Row="10"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Комплектация"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <ComboBox
+                        Height="20"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="5"
+                        ItemsSource="{Binding Equipments}"
+                        Background="Aqua"
+                        >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+
+                <!--Цвет-->
+                
+                <Grid
+                    Grid.Row="11"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}">
+
+                    <TextBlock
+                        Text="Цвет"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <ComboBox
+                        Height="20"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="5"
+                        ItemsSource="{Binding Colours}"
+                        Background="Aqua">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                
+                
+                <!--Добавить-->
+                <Grid
+                    Grid.Row="12">
+
+                    <Button
+                        Command="{Binding AddCarCommand}"
+                        Width="100"
+                        Height="30"
+                        CommandParameter="{Binding ElementName=AddCarWindow}"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,160,0"
+                        Content="Принять"
+                        Style="{StaticResource AddButton}"
+                        />
+                    <Button
+                        Command="{Binding CanselCommand}"
+                        CommandParameter="{Binding ElementName=AddCarWindow}"
+                        Style="{StaticResource AddButton}"
+                        Width="100"
+                        Height="30"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Content="Отменить"
+                        Margin="0,0,10,0"
+                        />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

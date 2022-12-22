@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:AutoShow.ViewModels"
+                    xmlns:view="clr-namespace:AutoShow.Views"
+                    xmlns:uc="clr-namespace:AutoShow.Views.UC">
+
+    <DataTemplate DataType="{x:Type vm:CarVM}">
+        <uc:Car/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:EmployeeVM}">
+        <uc:Employee/>
+    </DataTemplate>
+
+
+</ResourceDictionary>
