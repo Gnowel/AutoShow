@@ -61,7 +61,7 @@ namespace AutoShow.Models
             set
             {
                 _positionId = value;
-                OnPropertyChanged(nameof(Position));
+                OnPropertyChanged(nameof(PositionId));
             }
         }
         public string PositionName

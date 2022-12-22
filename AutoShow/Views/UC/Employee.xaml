@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:AutoShow.Views.UC"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:AutoShow.ViewModels"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="EmployeeUC">
     
     <UserControl.DataContext>
         <vm:EmployeeVM/>
@@ -45,25 +46,26 @@
                     <DataGrid 
                         RowStyle="{DynamicResource DataGridRowStyle1}"
                         ColumnHeaderStyle="{DynamicResource DataGridColumnHeader}"
-                        x:Name="Employes"
+                        x:Name="EmployesD"
                         Margin="10,45,10,10"
                         IsReadOnly="True"
                         HeadersVisibility="Column"
                         AutoGenerateColumns="False"
-                        ItemsSource="{Binding Path=Employes}">
+                        ItemsSource="{Binding Path=Employes, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedEmploye}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="ID"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Id}"/>
+                                Binding="{Binding Path=Id , UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Логин"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Login}"/>
+                                Binding="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Пароль"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Password}"/>
+                                Binding="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="ФИО"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
@@ -75,30 +77,32 @@
                             <DataGridTextColumn
                                 Header="Должность"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=PositionName}"/>
+                                Binding="{Binding Path=PositionName, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTemplateColumn 
-                            Header="Action"
-                            HeaderStyle="{DynamicResource DataGridColumnHeader}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Button 
-                                    Grid.Column="0"
-                                    Style="{DynamicResource EditButton}"
-                                    />
-                                        <Button
-                                    Grid.Column="1"
-                                    Style="{DynamicResource DeleteButton}"
-                                        />
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
+                                Header="Действия"
+                                HeaderStyle="{DynamicResource DataGridColumnHeader}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button 
+                                                Grid.Column="0"
+                                                Style="{DynamicResource DeleteButton}"
+                                                Command="{Binding Path=DataContext.DeleteEmployeeCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding }"/>
+                                            <Button
+                                                Grid.Column="1"
+                                                x:Name="DeleteButton"
+                                                Style="{DynamicResource EditButton}"
+                                                Command="{Binding Path=DataContext.EditEmployeeCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding }"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

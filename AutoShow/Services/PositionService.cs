@@ -1,5 +1,6 @@
 ﻿using AutoShow.Models;
 using AutoShow.Services.Interfaces;
+using AutoShow.Views.UC;
 using DBAccess.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace AutoShow.Services
             _autoShowDb = new AutoShowDb();
         }
 
-        public int GetIdByName(string name)
+        public int GetPositionIdByName(string name)
         {
             return _autoShowDb.Position.Where(n => n.name == name).Select(i => i.id).FirstOrDefault();
         }
@@ -24,6 +25,16 @@ namespace AutoShow.Services
         public List<PositionModel> GetPositions()
         {
             return _autoShowDb.Position.AsEnumerable().Select(position => new PositionModel(position)).ToList();
+        }
+        public string GetPositionNameById(int id)
+        {
+            return _autoShowDb.Position.Where(i => i.id == id).Select(i => i.name).FirstOrDefault();
+        }
+
+        public PositionModel GetPosition(int id)
+        {
+            return  new PositionModel(_autoShowDb.Position.Find(id));
+
         }
     }
 }

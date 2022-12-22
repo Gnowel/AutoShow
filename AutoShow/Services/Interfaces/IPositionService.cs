@@ -8,6 +8,9 @@ namespace AutoShow.Services.Interfaces
     public interface IPositionService
     {
         List<PositionModel> GetPositions();
-        int GetIdByName(string name);
+        int GetPositionIdByName(string name);
+        //fddd
+        string GetPositionNameById(int id);
+        PositionModel GetPosition(int id);
     }
 }

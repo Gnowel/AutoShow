@@ -14,6 +14,8 @@ namespace AutoShow.Services.Interfaces
         List<EmployeeModel> GetEmployees();
         string GetPositionNameById(int id);
         void InsertEmployee(EmployeeModel employee);
-        void Delete(int id);
+        void DeleteEmployee(int id);
+        EmployeeModel GetEmployeeByPhone(string phone);
+        void EditEmployee(EmployeeModel employee);
     }
 }

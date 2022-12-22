@@ -18,9 +18,36 @@ namespace AutoShow.Services
             _autoShowDb = new AutoShowDb();
         }
 
-        public void Delete(int id)
+        public void DeleteEmployee(int id)
         {
-            throw new NotImplementedException();
+            var currentEmployee = _autoShowDb.Employee.Find(id);
+
+            if (currentEmployee != null) 
+            {
+                _autoShowDb.Employee.Remove(currentEmployee);
+                _autoShowDb.SaveChanges();
+            }
+        }
+
+        public void EditEmployee(EmployeeModel employee)
+        {
+            var editEmployee    = _autoShowDb.Employee.SingleOrDefault(e => e.id == employee.Id);
+
+            if (editEmployee != null)
+            {
+                editEmployee.login = employee.Login;
+                editEmployee.password = employee.Password;
+                editEmployee.fullname = employee.FullName;
+                editEmployee.phone = employee.Phone;
+                editEmployee.position_id = employee.PositionId;
+
+                _autoShowDb.SaveChanges();
+            }
+        }
+
+        public EmployeeModel GetEmployeeByPhone(string phone)
+        {
+            return _autoShowDb.Employee.Where(p => p.phone== phone).AsEnumerable().Select(employee => new EmployeeModel(employee)).FirstOrDefault();
         }
 
         public List<EmployeeModel> GetEmployees()
@@ -30,7 +57,7 @@ namespace AutoShow.Services
 
         public string GetPositionNameById(int id)
         {
-            return _autoShowDb.Position.Where(i => i.id == id).Select(i => i.name).FirstOrDefault();
+            return _autoShowDb.Position.Where(i => i.id == id).Select(i => i.name).SingleOrDefault();
         }
 
         public void InsertEmployee(EmployeeModel employee)

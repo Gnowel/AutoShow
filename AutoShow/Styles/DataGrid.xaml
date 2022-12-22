@@ -452,7 +452,7 @@
                                 Color="#00AAEB"/>
                         </Border.Background>
                         <Image 
-                            Source="{StaticResource delete_icon}"/>
+                            Source="{StaticResource edit_icon}"/>
                     </Border>
                     <ControlTemplate.Triggers>
 
@@ -518,7 +518,7 @@
                         </Border.Background>
                         
                         <Image 
-                            Source="{StaticResource edit_icon}"/>
+                            Source="{StaticResource delete_icon}"/>
                     </Border>
                     <ControlTemplate.Triggers>
 

@@ -40,7 +40,7 @@ namespace AutoShow.ViewModels
             _positionService    = new PositionService();
 
             Positions           = new List<PositionModel>(_positionService.GetPositions());
-            CreateEmployee      = new EmployeeModel();
+            CreateEmployee      = new EmployeeModel() { Phone = "7"};
         }
 
         public RelayCommand AddEmployeeCommand
