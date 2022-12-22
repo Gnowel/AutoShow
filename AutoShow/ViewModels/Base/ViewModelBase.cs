@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoShow.Utilities
+namespace AutoShow.ViewModels.Base
 {
     //Базовый класс для всех классов ViewModel.Он обеспечивает поддержку уведомления об изменении свойства
     public class ViewModelBase : INotifyPropertyChanged

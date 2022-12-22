@@ -2,6 +2,7 @@
 using AutoShow.Services;
 using AutoShow.Services.Interfaces;
 using AutoShow.Utilities;
+using AutoShow.ViewModels.Base;
 using AutoShow.Views.Dialogs;
 using System;
 using System.Collections.Generic;

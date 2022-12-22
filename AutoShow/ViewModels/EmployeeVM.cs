@@ -1,7 +1,7 @@
 ﻿using AutoShow.Models;
 using AutoShow.Services;
 using AutoShow.Services.Interfaces;
-using AutoShow.Utilities;
+using AutoShow.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
