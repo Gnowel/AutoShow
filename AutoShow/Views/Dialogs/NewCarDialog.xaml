@@ -8,8 +8,8 @@
         xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
         mc:Ignorable="d"
         Title="NewCarDialog" 
-        Height="1080"
-        Width="300"
+        Height="700"
+        Width="260"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -63,17 +63,13 @@
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
                 
                 <!--Картинка-->
                 <Grid
                     Margin="10"
                     Grid.Row="0"
+                    Width="240"
                     Background="{StaticResource CanvasBrush}">
 
                     <TextBlock
@@ -87,12 +83,12 @@
                        Source="{Binding FileName}"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
-                       Margin="0,25,0,0"/>
+                       Margin="5,25,0,0"/>
 
                     <Button
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
-                        Margin="180,0,0,10"
+                        Margin="160,0,0,10"
                         Width="70"
                         Height="30"
                         Style="{DynamicResource ButtonDialog}"
@@ -105,7 +101,9 @@
                 <Grid
                     Grid.Row="1"
                     Margin="10"
-                    Background="{StaticResource CanvasBrush}">
+                    Background="{StaticResource CanvasBrush}"
+                    HorizontalAlignment="Left"
+                    Width="110">
                     
                     <TextBlock
                         Text="Цена"
@@ -113,11 +111,13 @@
                         Margin="5"/>
 
                     <TextBox
-                        Width="270"
+                        Width="100"
                         Height="20"
                         VerticalAlignment="Bottom"
-                        Margin="0,0,0,5"
-                        Style="{StaticResource ValidateTB}">
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,5"
+                        Style="{StaticResource ValidateTB}"
+                        Background="Transparent">
                         <TextBox.Text>
                             <Binding
                                 Path="CreateCar.Price"
@@ -132,9 +132,11 @@
                 </Grid>
                 <!--Страна изготовитель-->
                 <Grid
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Margin="10"
-                    Background="{StaticResource CanvasBrush}">
+                    Background="{StaticResource CanvasBrush}"
+                    HorizontalAlignment="Right"
+                    Width="110">
 
                     <TextBlock
                         Text="Страна марки"
@@ -142,10 +144,11 @@
                         Margin="5"/>
 
                     <TextBox
-                        Width="270"
+                        Width="100"
                         Height="20"
                         VerticalAlignment="Bottom"
-                        Margin="0,0,0,5"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,5,5"
                         Style="{StaticResource ValidateTB}">
                         <TextBox.Text>
                             <Binding
@@ -160,17 +163,19 @@
                 </Grid>
                 <!--Год изготовления-->
                 <Grid
-                    Grid.Row="3"
+                    Grid.Row="2"
                     Margin="10"
-                    Background="{StaticResource CanvasBrush}">
+                    Background="{StaticResource CanvasBrush}"
+                    Width="110"
+                    HorizontalAlignment="Left">
 
                     <TextBlock
-                        Text="Год изготовления"
+                        Text="Год выпуска"
                         Foreground="White"
                         Margin="5"/>
 
                     <TextBox
-                        Width="270"
+                        Width="100"
                         Height="20"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,5"
@@ -186,47 +191,21 @@
                         </TextBox.Text>
                     </TextBox>
                 </Grid>
-                <!--Статус-->
-                <Grid
-                    Grid.Row="4"
-                    Margin="10"
-                    Background="{StaticResource CanvasBrush}">
-
-                    <TextBlock
-                        Text="Статус"
-                        Foreground="White"
-                        Margin="5"/>
-
-                    <CheckBox
-                        Height="20"
-                        Width="150"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Bottom"
-                        Margin="5"
-                        IsChecked="{Binding CreateCar.Status}"
-                        Background="White">
-                        <!--<CheckBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock
-                                    Text="{Binding SCar.}"/>
-                            </DataTemplate>
-                        </CheckBox.ItemTemplate>-->
-                    </CheckBox>
-                </Grid>
-
                 <!--Количество посадочных мест-->
                 <Grid
-                    Grid.Row="5"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Width="110"
                     Margin="10"
                     Background="{StaticResource CanvasBrush}">
 
                     <TextBlock
-                        Text="Количество посадоных месте"
+                        Text="Количество мест"
                         Foreground="White"
                         Margin="5"/>
 
                     <TextBox
-                        Width="270"
+                        Width="100"
                         Height="20"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,5"
@@ -242,12 +221,83 @@
                         </TextBox.Text>
                     </TextBox>
                 </Grid>
+                <!--Статус-->
+                <Grid
+                    Grid.Row="3"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}"
+                    Width="50"
+                    HorizontalAlignment="Left">
 
+                    <TextBlock
+                        Text="Статус"
+                        Foreground="White"
+                        Margin="5"/>
+
+                    <CheckBox
+                        Height="20"
+                        Width="40"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="5"
+                        IsChecked="{Binding CreateCar.Status}"
+                        Background="White" 
+                        x:Name="checkBox">
+                        <!--<CheckBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Text="{Binding SCar.}"/>
+                            </DataTemplate>
+                        </CheckBox.ItemTemplate>-->
+                    </CheckBox>
+                </Grid>
+
+
+                <!--Дата прибытия на склад-->
+                <Grid
+                    Grid.Row="3"
+                    Margin="10"
+                    Background="{StaticResource CanvasBrush}"
+                    Width="180"
+                    HorizontalAlignment="Right">
+
+                    <TextBlock
+                        Text="Дата прибыти на склад"
+                        Foreground="White"
+                        Margin="5"/>
+                    <DatePicker
+                        x:Name="dataPicker"
+                        VerticalAlignment="Bottom"
+                        Height="25"
+                        Width="170"
+                        Margin="0,0,0,5"
+                        SelectedDate="{Binding CreateCar.DateArrival}">
+                    <DatePicker.Style>
+                        <Style TargetType="DatePicker">
+                            <Setter
+                                    Property="Visibility"
+                                    Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger
+                                        Binding="{Binding ElementName=checkBox, Path=IsChecked }"
+                                        Value="True">
+                                    <Setter
+                                            Property="Visibility"
+                                            Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DatePicker.Style>
+                </DatePicker>
+                </Grid>
+            
                 <!--Метраж-->
                 <Grid
-                    Grid.Row="6"
+                    Grid.Row="4"
                     Margin="10"
-                    Background="{StaticResource CanvasBrush}">
+                    Background="{StaticResource CanvasBrush}"
+                    Width="110"
+                    HorizontalAlignment="Left">
 
                     <TextBlock
                         Text="Пробег"
@@ -255,7 +305,7 @@
                         Margin="5"/>
 
                     <TextBox
-                        Width="270"
+                        Width="100"
                         Height="20"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,5"
@@ -274,9 +324,11 @@
 
                 <!--вин номер-->
                 <Grid
-                    Grid.Row="8"
+                    Grid.Row="4"
                     Margin="10"
-                    Background="{StaticResource CanvasBrush}">
+                    Background="{StaticResource CanvasBrush}"
+                    Width="110"
+                    HorizontalAlignment="Right">
 
                     <TextBlock
                         Text="VIN"
@@ -284,7 +336,7 @@
                         Margin="5"/>
 
                     <TextBox
-                        Width="270"
+                        Width="100"
                         Height="20"
                         VerticalAlignment="Bottom"
                         Margin="0,0,0,5"
@@ -301,38 +353,10 @@
                     </TextBox>
                 </Grid>
 
-                <!--Дата прибытия на склад-->
-                <Grid
-                    Grid.Row="9"
-                    Margin="10"
-                    Background="{StaticResource CanvasBrush}">
-
-                    <TextBlock
-                        Text="Дата прибыти на склад"
-                        Foreground="White"
-                        Margin="5"/>
-
-                    <TextBox
-                        Width="270"
-                        Height="20"
-                        VerticalAlignment="Bottom"
-                        Margin="0,0,0,5"
-                        Style="{StaticResource ValidateTB}">
-                        <TextBox.Text>
-                            <Binding
-                                Path="CreateCar.DateArrival"
-                                UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </Grid>
 
                 <!--Комплектация-->
                 <Grid
-                    Grid.Row="10"
+                    Grid.Row="5"
                     Margin="10"
                     Background="{StaticResource CanvasBrush}">
 
@@ -349,7 +373,7 @@
                         Margin="5"
                         ItemsSource="{Binding Equipments}"
                         Background="Aqua"
-                        >
+                        SelectedItem="{Binding SelectedEquipment}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock
@@ -362,7 +386,7 @@
                 <!--Цвет-->
                 
                 <Grid
-                    Grid.Row="11"
+                    Grid.Row="6"
                     Margin="10"
                     Background="{StaticResource CanvasBrush}">
 
@@ -378,7 +402,8 @@
                         VerticalAlignment="Bottom"
                         Margin="5"
                         ItemsSource="{Binding Colours}"
-                        Background="Aqua">
+                        Background="Aqua"
+                        SelectedItem="{Binding SelectedColour}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock
@@ -391,16 +416,16 @@
                 
                 <!--Добавить-->
                 <Grid
-                    Grid.Row="12">
+                    Grid.Row="7">
 
                     <Button
                         Command="{Binding AddCarCommand}"
-                        Width="100"
+                        Width="75"
                         Height="30"
                         CommandParameter="{Binding ElementName=AddCarWindow}"
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,160,0"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="20,0,0,0"
                         Content="Принять"
                         Style="{StaticResource AddButton}"
                         />
@@ -408,12 +433,12 @@
                         Command="{Binding CanselCommand}"
                         CommandParameter="{Binding ElementName=AddCarWindow}"
                         Style="{StaticResource AddButton}"
-                        Width="100"
+                        Width="75"
                         Height="30"
-                        VerticalAlignment="Bottom"
+                        VerticalAlignment="Top"
                         HorizontalAlignment="Right"
                         Content="Отменить"
-                        Margin="0,0,10,0"
+                        Margin="0,0,20,0"
                         />
                 </Grid>
             </Grid>

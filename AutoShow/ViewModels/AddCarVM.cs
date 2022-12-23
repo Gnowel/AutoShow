@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +30,9 @@ namespace AutoShow.ViewModels
         private RelayCommand _canselCommand;
 
         private string _fileName;
+        private EquipmentModel  _selectedEquipment;
+        private ColourModel     _selectedColour;
+
         public CarModel CreateCar 
         {
             get; 
@@ -45,12 +49,28 @@ namespace AutoShow.ViewModels
                 OnPropertyChanged(nameof(FileName));
             }
         }
-
+        public EquipmentModel SelectedEquipment
+        {
+            get => _selectedEquipment;
+            set
+            {
+                _selectedEquipment = value;
+                OnPropertyChanged(nameof(SelectedEquipment));
+            }
+        }
+        public ColourModel SelectedColour
+        {
+            get => _selectedColour;
+            set
+            {
+                _selectedColour = value;
+                OnPropertyChanged(nameof(SelectedColour));
+            }
+        }
         public AddCarVM(IColourService colourService)
         {
             _colourService = colourService;
 
-            //Colours = new ObservableCollection<ColourModel>(_colourService.GetColours());
         }
 
         public AddCarVM() 
@@ -93,9 +113,8 @@ namespace AutoShow.ViewModels
                 return _addCarCommand ??
                     (_addCarCommand = new RelayCommand(obj =>
                     {
-                        //CarModel carModel = new CarModel();
-                        //CreateCar.EquipmentId   = 2;
-                        //CreateCar.ColourId      = 2;
+                        CreateCar.EquipmentId   = SelectedEquipment.Id;
+                        CreateCar.ColourId      = SelectedColour.Id;
                         _carService.InsertCar(CreateCar, FileName);
                         ((Window)obj).Close();
                     },

@@ -11,5 +11,7 @@ namespace AutoShow.Services.Interfaces
     {
         List<CarModel> GetCars();
         void InsertCar(CarModel carModel, string photoUri);
+        void DeleteCar(int id);
+        void EditCar(CarModel carModel);
     }
 }

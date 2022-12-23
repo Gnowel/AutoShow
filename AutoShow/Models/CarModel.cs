@@ -1,5 +1,6 @@
 ﻿using AutoShow.Models.Base;
 using AutoShow.Utilities;
+using DBAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,8 @@ namespace AutoShow.Models
         private int         _colourId;
         private Brush       _brush;
         private ImageSource _imageToSource;
+        private string      _equipmentName;
+        private string      _colourName;
 
         private static readonly string[] ValidatedProperties = { "Price", "Manufacture", "Year", "Status", "Seat", "Mileage", "VIN", "DateArrival", "PhotoBytes", "EquipmentId", "ColourId" };
         public int Id { get; private set; }
@@ -143,9 +146,25 @@ namespace AutoShow.Models
             }
         }
 
-
+        public string EquipmentName
+        {
+            get => _equipmentName;
+            set
+            {
+                _equipmentName = value;
+                OnPropertyChanged(nameof(EquipmentName));
+            }
+        }
         #region Error
-
+        public string ColourName
+        {
+            get => _colourName;
+            set
+            {
+                _colourName = value;
+                OnPropertyChanged(nameof(ColourName));
+            }
+        }
         public string Error => throw new NotImplementedException();
 
         public bool isValid

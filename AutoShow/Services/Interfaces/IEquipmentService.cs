@@ -11,5 +11,6 @@ namespace AutoShow.Services.Interfaces
     public interface IEquipmentService
     {
         List<EquipmentModel> GetEquipments();
+        string GetEquipmentNameById(int id);
     }
 }

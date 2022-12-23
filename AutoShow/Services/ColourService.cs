@@ -18,9 +18,16 @@ namespace AutoShow.Services
             _autoShowDb = new AutoShowDb();
 
         }
+
+        public string GetColourNameById(int id)
+        {
+            return _autoShowDb.Colour.Where(i => i.id == id).Select(i => i.name).FirstOrDefault();
+        }
+
         public List<ColourModel> GetColours()
         {
             return _autoShowDb.Colour.AsEnumerable().Select(colour => new ColourModel(colour)).ToList();
         }
+
     }
 }

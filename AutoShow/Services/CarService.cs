@@ -18,6 +18,39 @@ namespace AutoShow.Services
             _autoShowDb = new AutoShowDb();
         }
 
+        public void DeleteCar(int id)
+        {
+            var currentCar = _autoShowDb.Car.Find(id);
+
+            if(currentCar != null)
+            {
+                _autoShowDb.Car.Remove(currentCar);
+                _autoShowDb.SaveChanges();
+            }
+        }
+
+        public void EditCar(CarModel carModel)
+        {
+            var editCar = _autoShowDb.Car.SingleOrDefault(c => c.id == carModel.Id);
+
+            if(editCar != null)
+            {
+                editCar.price           = carModel.Price;
+                editCar.manufacture     = carModel.Manufacture;
+                editCar.year            = carModel.Year;
+                editCar.status          = carModel.Status;
+                editCar.seat            = carModel.Seat;
+                editCar.mileage         = carModel.Mileage;
+                editCar.vin             = carModel.VIN;
+                editCar.date_arrival    = carModel.DateArrival;
+                editCar.photo           = carModel.PhotoBytes;
+                editCar.equipment_id    = carModel.EquipmentId;
+                editCar.colour_id       = carModel.ColourId;
+
+                _autoShowDb.SaveChanges();
+            }
+        }
+
         public List<CarModel> GetCars()
         {
             return _autoShowDb.Car.AsEnumerable().Select(car => new CarModel(car)).ToList();

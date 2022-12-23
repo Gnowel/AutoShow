@@ -10,5 +10,6 @@ namespace AutoShow.Services.Interfaces
     public interface IColourService
     {
         List<ColourModel> GetColours();
+        string GetColourNameById(int id);
     }
 }

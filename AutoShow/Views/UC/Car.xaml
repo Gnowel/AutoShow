@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AutoShow.Views.UC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="450" d:DesignWidth="900"
              xmlns:vm="clr-namespace:AutoShow.ViewModels">
     
     <UserControl.DataContext>
@@ -51,52 +51,53 @@
                         IsReadOnly="True"
                         HeadersVisibility="Column"
                         AutoGenerateColumns="False"
-                        ItemsSource="{Binding Path=Cars}">
+                        ItemsSource="{Binding Path=Cars}"
+                        SelectedItem="{Binding SelectedCar}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="ID"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Id}"/>
+                                Binding="{Binding Path=Id , UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Цена"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Price}"/>
+                                Binding="{Binding Path=Price, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Страна марки"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Manufacture}"/>
+                                Binding="{Binding Path=Manufacture, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Год выпуска"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Year}"/>
+                                Binding="{Binding Path=Year, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Наличие"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Status}"/>
+                                Binding="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Количество мест"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Seat}"/>
+                                Binding="{Binding Path=Seat, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Пробег"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=Mileage}"/>
+                                Binding="{Binding Path=Mileage, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="VIN"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=VIN}"/>
+                                Binding="{Binding Path=VIN, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Дата прибытия"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=DateArrival}"/>
+                                Binding="{Binding Path=DateArrival,UpdateSourceTrigger=PropertyChanged, StringFormat=dd/MM/yyyy}"/>
                             <DataGridTextColumn
                                 Header="Комплектация"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=EquipmentId}"/>
+                                Binding="{Binding Path=EquipmentName, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn
                                 Header="Цвет"
                                 HeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                                Binding="{Binding Path=ColourId}"/>
+                                Binding="{Binding Path=ColourName, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTemplateColumn 
                             Header="Action"
                             HeaderStyle="{DynamicResource DataGridColumnHeader}">
@@ -108,13 +109,15 @@
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
                                             <Button 
-                                    Grid.Column="0"
-                                    Style="{DynamicResource EditButton}"
-                                    />
+                                                Grid.Column="0"
+                                                Style="{DynamicResource DeleteButton}"
+                                                Command="{Binding Path=DataContext.DeleteCarCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding }"/>
                                             <Button
-                                    Grid.Column="1"
-                                    Style="{DynamicResource DeleteButton}"
-                                        />
+                                                Grid.Column="1"
+                                                Style="{DynamicResource EditButton}"
+                                                Command="{Binding Path=DataContext.EditCarCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                CommandParameter="{Binding }"/>
                                         </Grid>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

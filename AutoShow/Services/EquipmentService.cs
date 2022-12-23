@@ -17,6 +17,12 @@ namespace AutoShow.Services
         {
             _autoShowDb = new AutoShowDb();
         }
+
+        public string GetEquipmentNameById(int id)
+        {
+            return _autoShowDb.Equipment.Where(i => i.id == id).Select(i => i.name).FirstOrDefault();
+        }
+
         public List<EquipmentModel> GetEquipments()
         {
             return _autoShowDb.Equipment.AsEnumerable().Select(equipment => new EquipmentModel(equipment)).ToList();

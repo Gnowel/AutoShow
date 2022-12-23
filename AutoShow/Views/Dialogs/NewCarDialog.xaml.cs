@@ -33,5 +33,6 @@ namespace AutoShow.Views.Dialogs
         {
             DragMove();
         }
+
     }
 }
