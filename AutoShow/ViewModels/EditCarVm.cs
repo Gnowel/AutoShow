@@ -1,12 +1,19 @@
 ﻿using AutoShow.Models;
+using AutoShow.Services;
 using AutoShow.Services.Interfaces;
 using AutoShow.Utilities;
 using AutoShow.ViewModels.Base;
+using AutoShow.Views.UC;
+using DBAccess.Entities;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Windows;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace AutoShow.ViewModels
 {
@@ -16,7 +23,7 @@ namespace AutoShow.ViewModels
         private readonly IEquipmentService  _equipmentService;
         private readonly IColourService     _colourService;
 
-        private RelayCommand _accesEditCommand;
+        private RelayCommand _accessEditCommand;
         private RelayCommand _canselCommand;
         private RelayCommand _addPhotoCommand;
 
@@ -24,14 +31,39 @@ namespace AutoShow.ViewModels
         private ColourModel     _selectedColour;
         private EquipmentModel  _selectedEquipment;
         private CarModel        _editCar;
-        private int             _selectIndex;
+        private int             _selectIndexEquipment;
+        private int             _selectIndexColour;
 
         private void TakeCar(CarModel car)
         {
-            EditCar = car;
-            
-        }
+            EditCar                 = car;
 
+            //SelectIndexEquipment    = 0;
+            //SelectIndexColour       = 0;
+            int index = 0;
+            foreach (var e in Equipments)
+            {
+                if (SelectedEquipment.Id == e.Id) break;
+                index++;
+            }
+            SelectIndexEquipment= index;
+            index= 0;
+            foreach(var c in Colours)
+            {
+                if(SelectedColour.Id == c.Id) break;
+                index++;
+            }
+
+            SelectIndexColour= index;
+
+            OnPropertyChanged(nameof(EditCar));
+            OnPropertyChanged(nameof(SelectedEquipment));
+            OnPropertyChanged(nameof(SelectedColour));
+            OnPropertyChanged(nameof(SelectIndexEquipment));
+            OnPropertyChanged(nameof(SelectIndexColour));
+        }
+        public List<EquipmentModel> Equipments { get; set; } 
+        public List<ColourModel> Colours { get; set; }
         public CarModel EditCar 
         {
             get => _editCar;
@@ -59,20 +91,35 @@ namespace AutoShow.ViewModels
                 OnPropertyChanged(nameof(SelectedEquipment));
             }
         }
-        public int SelectIndex
+        public int SelectIndexEquipment
         {
-            get => _selectIndex;
+            get => _selectIndexEquipment;
             set
             {
-                _selectIndex= value;
-                OnPropertyChanged(nameof(SelectIndex));
+                _selectIndexEquipment = value;
+                OnPropertyChanged(nameof(SelectIndexEquipment));
+            }
+        }
+        public int SelectIndexColour
+        {
+            get => _selectIndexColour;
+            set
+            {
+                _selectIndexColour = value;
+                OnPropertyChanged(nameof(SelectIndexColour));
             }
         }
 
         public EditCarVm()
         {
+            _colourService = new ColourService();
+            _carService = new CarService();
+            _equipmentService = new EquipmentService();
 
             CarVM.Send += TakeCar;
+
+            Colours = new List<ColourModel>(_colourService.GetColours());
+            Equipments = new List<EquipmentModel>(_equipmentService.GetEquipments());
         }
 
         public RelayCommand AddPhotoCommand
@@ -89,12 +136,61 @@ namespace AutoShow.ViewModels
                         if (openFileDialog.ShowDialog().Value)
                         {
                             EditCar.PhotoBytes = File.ReadAllBytes(openFileDialog.FileName);
+
+                            var random = new Random();
+
+                            Brush Brush = new SolidColorBrush(Color.FromRgb((byte)random.Next(0, 255),
+                                                                      (byte)random.Next(0, 255),
+                            (byte)random.Next(0, 255)));
+
+                            try
+                            {
+                                using (Stream StreamObj = new MemoryStream(EditCar.PhotoBytes))
+                                {
+                                    var image = new BitmapImage();
+
+                                    image.BeginInit();
+                                    image.CacheOption = BitmapCacheOption.OnLoad;
+                                    image.StreamSource = StreamObj;
+                                    image.EndInit();
+
+                                    EditCar.ImageToShow = image;
+                                }
+                            }
+                            catch
+                            {
+                                Debug.WriteLine($"Ошибка инициализации изображения пользователя {this}");
+                            }
                         }
                     }));
 
 
             }
         }
-        
+        public RelayCommand AccessEditCommand
+        {
+            get
+            {
+                return _accessEditCommand ??
+                    (_accessEditCommand = new RelayCommand(obj =>
+                    {
+                        EditCar.EquipmentId = SelectedEquipment.Id;
+                        EditCar.ColourId= SelectedColour.Id;
+                        _carService.EditCar(EditCar);
+                        ((Window)obj).Close();
+                    }));
+            }
+        }
+        public RelayCommand CanselCommand
+        {
+            get
+            {
+                return _canselCommand ??
+                    (_canselCommand = new RelayCommand(obj =>
+                    {
+                        ((Window)obj).Close();
+                    }));
+            }
+        }
     }
 }

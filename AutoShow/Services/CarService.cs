@@ -11,7 +11,12 @@ namespace AutoShow.Services
 {
     public class CarService : ICarService
     {
-        private readonly AutoShowDb _autoShowDb;
+        private  AutoShowDb _autoShowDb;
+
+            //        using(_autoShowDb = new AutoShowDb())
+            //{
+
+            //}
 
         public CarService()
         {
@@ -20,68 +25,80 @@ namespace AutoShow.Services
 
         public void DeleteCar(int id)
         {
-            var currentCar = _autoShowDb.Car.Find(id);
-
-            if(currentCar != null)
+            using (_autoShowDb = new AutoShowDb())
             {
-                _autoShowDb.Car.Remove(currentCar);
-                _autoShowDb.SaveChanges();
+                var currentCar = _autoShowDb.Car.Find(id);
+
+                if(currentCar != null)
+                {
+                    _autoShowDb.Car.Remove(currentCar);
+                    _autoShowDb.SaveChanges();
+                }
             }
         }
 
         public void EditCar(CarModel carModel)
         {
-            var editCar = _autoShowDb.Car.SingleOrDefault(c => c.id == carModel.Id);
-
-            if(editCar != null)
+            using(_autoShowDb = new AutoShowDb())
             {
-                editCar.price           = carModel.Price;
-                editCar.manufacture     = carModel.Manufacture;
-                editCar.year            = carModel.Year;
-                editCar.status          = carModel.Status;
-                editCar.seat            = carModel.Seat;
-                editCar.mileage         = carModel.Mileage;
-                editCar.vin             = carModel.VIN;
-                editCar.date_arrival    = carModel.DateArrival;
-                editCar.photo           = carModel.PhotoBytes;
-                editCar.equipment_id    = carModel.EquipmentId;
-                editCar.colour_id       = carModel.ColourId;
 
-                _autoShowDb.SaveChanges();
+                var editCar = _autoShowDb.Car.SingleOrDefault(c => c.id == carModel.Id);
+
+                if(editCar != null)
+                {
+                    editCar.price           = carModel.Price;
+                    editCar.manufacture     = carModel.Manufacture;
+                    editCar.year            = carModel.Year;
+                    editCar.status          = carModel.Status;
+                    editCar.seat            = carModel.Seat;
+                    editCar.mileage         = carModel.Mileage;
+                    editCar.vin             = carModel.VIN;
+                    editCar.date_arrival    = carModel.DateArrival;
+                    editCar.photo           = carModel.PhotoBytes;
+                    editCar.equipment_id    = carModel.EquipmentId;
+                    editCar.colour_id       = carModel.ColourId;
+
+                    _autoShowDb.SaveChanges();
+                }
             }
         }
 
         public List<CarModel> GetCars()
         {
+            _autoShowDb = new AutoShowDb();
             return _autoShowDb.Car.AsEnumerable().Select(car => new CarModel(car)).ToList();
+            
         }
 
         public void InsertCar(CarModel carModel, string photoUri)
         {
-            var newCar = new Car()
+            using (_autoShowDb = new AutoShowDb())
             {
-                price           = carModel.Price,
-                manufacture     = carModel.Manufacture,
-                year            = carModel.Year,
-                status          = carModel.Status,
-                seat            = carModel.Seat,
-                mileage         = carModel.Mileage,
-                vin             = carModel.VIN,
-                date_arrival    = carModel.DateArrival,
-                equipment_id    = carModel.EquipmentId,
-                colour_id       = carModel.ColourId
-            };
+                var newCar = new Car()
+                {
+                    price           = carModel.Price,
+                    manufacture     = carModel.Manufacture,
+                    year            = carModel.Year,
+                    status          = carModel.Status,
+                    seat            = carModel.Seat,
+                    mileage         = carModel.Mileage,
+                    vin             = carModel.VIN,
+                    date_arrival    = carModel.DateArrival,
+                    equipment_id    = carModel.EquipmentId,
+                    colour_id       = carModel.ColourId
+                };
 
-            try
-            {
-                newCar.photo = File.ReadAllBytes(photoUri);
-            }
-            catch
-            {
+                try
+                {
+                    newCar.photo = File.ReadAllBytes(photoUri);
+                }
+                catch
+                {
 
+                }
+                _autoShowDb.Car.Add(newCar);
+                _autoShowDb.SaveChanges();
             }
-            _autoShowDb.Car.Add(newCar);
-            _autoShowDb.SaveChanges();
         }
     }
 }

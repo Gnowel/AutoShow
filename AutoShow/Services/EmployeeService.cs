@@ -11,7 +11,7 @@ namespace AutoShow.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly AutoShowDb _autoShowDb;
+        private  AutoShowDb _autoShowDb;
 
         public EmployeeService()
         {
@@ -52,7 +52,11 @@ namespace AutoShow.Services
 
         public List<EmployeeModel> GetEmployees()
         {
+            //_autoShowDb = new AutoShowDb();
+      
+
             return _autoShowDb.Employee.AsEnumerable().Select(employee => new EmployeeModel(employee)).ToList();
+            
         }
 
         public string GetPositionNameById(int id)

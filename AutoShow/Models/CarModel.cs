@@ -212,7 +212,7 @@ namespace AutoShow.Models
         }
         #endregion
         public CarModel() { }
-        public CarModel(DBAccess.Entities.Car car)
+        public CarModel(Car car)
         {
             Id          = car.id;
             Price       = car.price;

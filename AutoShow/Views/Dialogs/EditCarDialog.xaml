@@ -80,7 +80,7 @@
                     <Image
                        Width="150"
                        Height="150"
-                       Source="{Binding }"
+                       Source="{Binding EditCar.ImageToShow}"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Margin="5,25,0,0"/>
@@ -312,7 +312,7 @@
                         Style="{StaticResource ValidateTB}">
                         <TextBox.Text>
                             <Binding
-                                Path="CreateCar.Mileage"
+                                Path="EditCar.Mileage"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
@@ -327,7 +327,7 @@
                     Grid.Row="4"
                     Margin="10"
                     Background="{StaticResource CanvasBrush}"
-                    Width="110"
+                    Width="120"
                     HorizontalAlignment="Right">
 
                     <TextBlock
@@ -343,7 +343,7 @@
                         Style="{StaticResource ValidateTB}">
                         <TextBox.Text>
                             <Binding
-                                Path="CreateCar.VIN"
+                                Path="EditCar.VIN"
                                 UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
@@ -373,7 +373,8 @@
                         Margin="5"
                         ItemsSource="{Binding Equipments}"
                         Background="Aqua"
-                        SelectedItem="{Binding SelectedEquipment}">
+                        SelectedItem="{Binding SelectedEquipment}"
+                        SelectedIndex="{Binding SelectIndexEquipment}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock
@@ -403,7 +404,8 @@
                         Margin="5"
                         ItemsSource="{Binding Colours}"
                         Background="Aqua"
-                        SelectedItem="{Binding SelectedColour}">
+                        SelectedItem="{Binding SelectedColour}"
+                        SelectedIndex="{Binding SelectIndexColour}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock
@@ -419,7 +421,7 @@
                     Grid.Row="7">
 
                     <Button
-                        Command="{Binding AddCarCommand}"
+                        Command="{Binding AccessEditCommand}"
                         Width="75"
                         Height="30"
                         CommandParameter="{Binding ElementName=EditCarWindow}"
