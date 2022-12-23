@@ -11,5 +11,6 @@ namespace AutoShow.Services.Interfaces
     {
         List<ColourModel> GetColours();
         string GetColourNameById(int id);
+        ColourModel GetColour(int id);
     }
 }

@@ -36,25 +36,24 @@ namespace AutoShow.ViewModels
 
         private void TakeCar(CarModel car)
         {
-            EditCar                 = car;
+            EditCar             = car;
 
-            //SelectIndexEquipment    = 0;
-            //SelectIndexColour       = 0;
-            int index = 0;
+            SelectedEquipment   = _equipmentService.GetEquipment(car.EquipmentId);
+            SelectedColour      = _colourService.GetColour(car.ColourId);
+
+            SelectIndexEquipment = 0;
+            SelectIndexColour = 0;
             foreach (var e in Equipments)
             {
                 if (SelectedEquipment.Id == e.Id) break;
-                index++;
+                SelectIndexEquipment++;
             }
-            SelectIndexEquipment= index;
-            index= 0;
             foreach(var c in Colours)
             {
                 if(SelectedColour.Id == c.Id) break;
-                index++;
+                SelectIndexColour++;
             }
 
-            SelectIndexColour= index;
 
             OnPropertyChanged(nameof(EditCar));
             OnPropertyChanged(nameof(SelectedEquipment));

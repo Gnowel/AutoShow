@@ -18,6 +18,11 @@ namespace AutoShow.Services
             _autoShowDb = new AutoShowDb();
         }
 
+        public EquipmentModel GetEquipment(int id)
+        {
+            return new EquipmentModel(_autoShowDb.Equipment.Find(id));
+        }
+
         public string GetEquipmentNameById(int id)
         {
             return _autoShowDb.Equipment.Where(i => i.id == id).Select(i => i.name).FirstOrDefault();
