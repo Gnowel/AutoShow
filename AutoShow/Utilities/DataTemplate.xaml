@@ -12,5 +12,9 @@
         <uc:Employee/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:CarSaleVM}">
+        <uc:CarSale/>
+    </DataTemplate>
+
 
 </ResourceDictionary>

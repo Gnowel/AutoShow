@@ -241,7 +241,7 @@
                     FontSize="16"
                     Foreground="White"
                     Command="{Binding SignInCommand}"
-                    CommandParameter="{Binding ElementName=Password }">
+                    CommandParameter="{Binding ElementName=Password, UpdateSourceTrigger=PropertyChanged}">
                 <!--<Button.CommandParameter>
                     <MultiBinding 
                         Converter="{StaticResource }"

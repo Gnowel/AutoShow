@@ -46,7 +46,7 @@ namespace DBAccess.Entities
             modelBuilder.Entity<AdditionalServices>()
                 .HasMany(e => e.Model)
                 .WithMany(e => e.AdditionalServices)
-                .Map(m => m.ToTable("ModelsAdditionalServices").MapLeftKey("additional_services_id").MapRightKey("model_id"));
+                .Map(m => m.ToTable("ModelsAdditionaS").MapLeftKey("additional_services_id").MapRightKey("model_id"));
 
             modelBuilder.Entity<Brand>()
                 .HasMany(e => e.Model)

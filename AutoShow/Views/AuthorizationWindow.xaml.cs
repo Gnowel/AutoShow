@@ -28,7 +28,8 @@ namespace AutoShow.Views
             InitializeComponent();
 
             //((AuthorizationWindow)this.DataContext).OnClosed += Close;
-            ((AuthorizationVM)this.DataContext).OnClosed += Close;
+            ((AuthorizationVM)this.DataContext).OnClosed += Hide;
+            ((AuthorizationVM)this.DataContext).OnActivated += Show;
         }
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)

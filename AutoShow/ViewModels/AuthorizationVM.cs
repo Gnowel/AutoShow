@@ -18,20 +18,45 @@ namespace AutoShow.ViewModels
     class AuthorizationVM : ViewModelBase
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IPositionService _positionService;
 
         private RelayCommand _signInCommand;
 
+        private EmployeeModel _employee;
+
         public event Action OnClosed;
-        public EmployeeModel Employee { get; set; }
+        public event Action OnActivated;
+        public EmployeeModel Employee 
+        {
+            get => _employee;
+            set
+            {
+                _employee= value;
+                OnPropertyChanged(nameof(Employee));
+            }
+        }
+        private void Show()
+        {
+            OnActivated?.Invoke();
+            Employee = new EmployeeModel()
+            {
+                Login = "",
+                Password = "  "
+            };
+            OnPropertyChanged(nameof(Employee));
+        }
         public AuthorizationVM()
         {
             _employeeService = new EmployeeService();
+            _positionService = new PositionService();
 
             Employee = new EmployeeModel()
             {
                 Login = "",
                 Password = "  "
             };
+
+            NavigationVM.Send += Show;
         }
         public RelayCommand SignInCommand
         {
@@ -43,10 +68,23 @@ namespace AutoShow.ViewModels
                     Employee.Password = ((PasswordBox)obj).Password;
                     var currentEmployer = _employeeService.SignIn(Employee.Login, Employee.Password);
 
+                    ((PasswordBox)obj).Password = "";
                     if (currentEmployer != null)
                     {
-                        MainWindow mainWindow = new MainWindow();
-                        mainWindow.Show();
+                        currentEmployer.PositionName = _positionService.GetPositionNameById(currentEmployer.PositionId);
+
+                        switch (currentEmployer.PositionName)
+                        {
+                            case "Администратор":
+                                MainWindow mainWindow = new MainWindow();
+                                mainWindow.Show();
+                                break;
+                            case "Продавец":
+                                MainCommonWindow mainCommon = new MainCommonWindow();
+                                mainCommon.Show();
+                                break;
+                        }
+
                         OnClosed?.Invoke();
                     }
                     else
@@ -54,7 +92,10 @@ namespace AutoShow.ViewModels
                         MessageBox.Show("Неверный логин или пароль!");
                     }
                 },
-                (obj) => Employee.IsValid);
+                (obj) => Employee.IsValid)
+                {
+
+                };
             }
         }
     }

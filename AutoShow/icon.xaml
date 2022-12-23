@@ -45,4 +45,43 @@
         x:Key="edit_icon"
         UriSource="/Image/edit.png"/>
     
+    <BitmapImage 
+        x:Key="logout_icon"
+        UriSource="/Image/logOut.png"/>
+
+    <BitmapImage 
+        x:Key="brush_icon"
+        UriSource="/Image/Sale/brush.png"/>
+
+    <BitmapImage 
+        x:Key="calendar_icon"
+        UriSource="/Image/Sale/calendar.png"/>
+
+    <BitmapImage 
+        x:Key="fuel_icon"
+        UriSource="/Image/Sale/fuel.png"/>
+
+    <BitmapImage 
+        x:Key="gear_icon"
+        UriSource="/Image/Sale/gear.png"/>
+
+    <BitmapImage 
+        x:Key="miliage_icon"
+        UriSource="/Image/Sale/miliage.png"/>
+
+    <BitmapImage 
+        x:Key="power_icon"
+        UriSource="/Image/Sale/power.png"/>
+
+    <BitmapImage 
+        x:Key="seat_icon"
+        UriSource="/Image/Sale/seat.png"/>
+
+    <BitmapImage 
+        x:Key="type_icon"
+        UriSource="/Image/Sale/type.png"/>
+
+    <BitmapImage 
+        x:Key="money_icon"
+        UriSource="/Image/Sale/rubl.png"/>
 </ResourceDictionary>

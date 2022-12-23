@@ -22,10 +22,20 @@
     <None Remove="Image\LoginForm\Крест не активный.png" />
     <None Remove="Image\LoginForm\Минус активный.png" />
     <None Remove="Image\LoginForm\Минус не активный.png" />
+    <None Remove="Image\logOut.png" />
     <None Remove="Image\MainForm\close.png" />
     <None Remove="Image\MainForm\maximize.png" />
     <None Remove="Image\MainForm\minimize.png" />
     <None Remove="Image\MainForm\subtract.png" />
+    <None Remove="Image\Sale\brush.png" />
+    <None Remove="Image\Sale\calendar.png" />
+    <None Remove="Image\Sale\fuel.png" />
+    <None Remove="Image\Sale\gear.png" />
+    <None Remove="Image\Sale\miliage.png" />
+    <None Remove="Image\Sale\power.png" />
+    <None Remove="Image\Sale\rubl.png" />
+    <None Remove="Image\Sale\seat.png" />
+    <None Remove="Image\Sale\type.png" />
     <None Remove="Image\SortDownActive.png" />
     <None Remove="Image\SortDownDontActive.png" />
     <None Remove="Image\SortUpActive.png" />
@@ -34,6 +44,7 @@
 
   <ItemGroup>
     <Resource Include="Image\LeftMenuIcon\users.png" />
+    <Resource Include="Image\logOut.png" />
     <Resource Include="Image\MainForm\minimize.png" />
   </ItemGroup>
 
@@ -59,6 +70,15 @@
     <Resource Include="Image\MainForm\close.png" />
     <Resource Include="Image\MainForm\maximize.png" />
     <Resource Include="Image\MainForm\subtract.png" />
+    <Resource Include="Image\Sale\brush.png" />
+    <Resource Include="Image\Sale\calendar.png" />
+    <Resource Include="Image\Sale\fuel.png" />
+    <Resource Include="Image\Sale\gear.png" />
+    <Resource Include="Image\Sale\miliage.png" />
+    <Resource Include="Image\Sale\power.png" />
+    <Resource Include="Image\Sale\rubl.png" />
+    <Resource Include="Image\Sale\seat.png" />
+    <Resource Include="Image\Sale\type.png" />
     <Resource Include="Image\SortDownActive.png" />
     <Resource Include="Image\SortDownDontActive.png" />
     <Resource Include="Image\SortUpDontActive.png" />

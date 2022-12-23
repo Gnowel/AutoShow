@@ -33,9 +33,90 @@ namespace AutoShow.Models
         private ImageSource _imageToSource;
         private string      _equipmentName;
         private string      _colourName;
+        private string      _fullName;
+        private string      _brandName;
+        private string      _modelName;
+        private string      _typeName;
+        private string      _fuelName;
+        private string         _powerName;
+        private string      _name;
+        private string      _mileageName;
+        private string      _gearName;
 
         private static readonly string[] ValidatedProperties = { "Price", "Manufacture", "Year", "Status", "Seat", "Mileage", "VIN", "DateArrival", "PhotoBytes", "EquipmentId", "ColourId" };
         public int Id { get; private set; }
+        public string FuelName
+        {
+            get => _fuelName;
+            set
+            {
+                _fuelName = value;
+                OnPropertyChanged(nameof(FuelName));
+            }
+        }
+        public string GearName
+        {
+            get => _gearName;
+            set
+            {
+                _gearName = value;
+                OnPropertyChanged(nameof(GearName));
+            }
+        }
+        public string MileageName
+        {
+            get => _mileageName;
+            set
+            {
+                _mileageName = value;
+                OnPropertyChanged(nameof(MileageName));
+            }
+        }
+        public string PowerName
+        {
+            get => _powerName;
+            set
+            {
+                _powerName = value;
+                OnPropertyChanged(nameof(PowerName));
+            }
+        }
+        public string BrandName
+        {
+            get => _brandName;
+            set
+            {
+                _brandName = value;
+                OnPropertyChanged(nameof(BrandName));
+            }
+        }
+        public string ModelName
+        {
+            get => _modelName;
+            set
+            {
+                _modelName = value;
+                OnPropertyChanged(nameof(ModelName));
+            }
+        }
+        public string TypeName
+        {
+            get => _typeName;
+            set
+            {
+                _typeName = value;
+                OnPropertyChanged(nameof(TypeName));
+            }
+        }
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
         public decimal Price 
         { 
             get => _price; 
@@ -125,6 +206,15 @@ namespace AutoShow.Models
             {
                 _colourId = value;
                 OnPropertyChanged(nameof(ColourId));
+            }
+        }
+        public string FullName
+        {
+            get => _fullName;
+            set
+            {
+                _fullName = value;
+                OnPropertyChanged(nameof(FullName));
             }
         }
         public Brush Brush
